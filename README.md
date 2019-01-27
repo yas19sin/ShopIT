@@ -29,3 +29,7 @@ fixed some bugs/errors in html code and python
 4. Learn Python to do all of the above properly
 
 ```
+
+## Extensions:
+
+<a href="https://use.fontawesome.com/releases/v5.6.3/fontawesome-free-5.6.3-web.zip"> Font Awesome 5</a> is needed.
