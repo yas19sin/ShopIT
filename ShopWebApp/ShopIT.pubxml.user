@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Software Dev\Python\ShopWebApp\ShopWebApp\bin\Release\Publish</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="app.py">
+      <publishTime>01/25/2019 06:02:33</publishTime>
+    </File>
+    <File Include="requirements.txt">
+      <publishTime>01/24/2019 22:04:14</publishTime>
+    </File>
+    <File Include="static/css/main.css">
+      <publishTime>01/25/2019 02:00:13</publishTime>
+    </File>
+    <File Include="static/css/styles.css">
+      <publishTime>01/24/2019 00:34:48</publishTime>
+    </File>
+    <File Include="templates/About.html">
+      <publishTime>01/24/2019 20:36:51</publishTime>
+    </File>
+    <File Include="templates/Contact.html">
+      <publishTime>01/24/2019 20:36:40</publishTime>
+    </File>
+    <File Include="templates/Dashboard.html">
+      <publishTime>01/24/2019 17:01:13</publishTime>
+    </File>
+    <File Include="templates/index.html">
+      <publishTime>01/25/2019 04:40:11</publishTime>
+    </File>
+    <File Include="templates/layout.html">
+      <publishTime>01/24/2019 19:50:36</publishTime>
+    </File>
+    <File Include="templates/login.html">
+      <publishTime>01/25/2019 02:34:22</publishTime>
+    </File>
+    <File Include="templates/Logout.html">
+      <publishTime>01/24/2019 17:02:15</publishTime>
+    </File>
+    <File Include="templates/password_recovery.html">
+      <publishTime>01/24/2019 20:37:13</publishTime>
+    </File>
+    <File Include="templates/register.html">
+      <publishTime>01/25/2019 02:07:55</publishTime>
+    </File>
+    <File Include="templates/Search.html">
+      <publishTime>01/25/2019 05:59:25</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
