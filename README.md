@@ -6,6 +6,7 @@ Shop IT is a website that gives you shops/stores depending on your location
 
 ### Change Log:
 
+<li>
 ```
 0.1
 Added Git repository.
@@ -19,7 +20,7 @@ Added Dashboard for when user logged in
 added the googlemaps api to get nearby places such as stores/shops
 fixed some bugs/errors in html code and python
 ```
-
+</li>
 ### Todo:
 
 ```
