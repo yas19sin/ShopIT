@@ -32,7 +32,5 @@ fixed some bugs/errors in html code and python
 
 ## Extensions:
 
-```
-<html><a href="https://use.fontawesome.com/releases/v5.6.3/fontawesome-free-5.6.3-web.zip"> Font Awesome 5</a> is needed.</html>
+<li><a href="https://use.fontawesome.com/releases/v5.6.3/fontawesome-free-5.6.3-web.zip"> Font Awesome 5</a> is needed.</li>
 
-```
