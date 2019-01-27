@@ -6,7 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import googlemaps, requests, json, time
 from googlemaps.places import places_autocomplete_session_token
 import sqlalchemy, sqlalchemy_utils
-#from googleplaces import GooglePlaces, types, lang
 
 key = 'AIzaSyAoMCCon3EqNo4HUCaDsCVegwG4P5sTxkE'
 
@@ -14,8 +13,6 @@ error_type = ''
 error = ''
 
 app = Flask(__name__)
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://id8571093_yas19sin:yobama@atabases.000webhost.com/id8571093_maindb'
-#engine = create_engine('mysql://id8571093_yas19sin:yobama@atabases.000webhost.com/id8571093_maindb')
 wsgi_app = app.wsgi_app
 db = SQLAlchemy(app)
 google_places = googlemaps.Client(key)
@@ -24,69 +21,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
-#def get_users_location():
-    #URL = ('https://api.ipgeolocation.io/ipgeo?apiKey=dbe5400141564b12ad9e379e679fb327')
-    #r = requests.get(URL)
-    #respone = r.text
-    #locations = json.loads(respone)
-    #lat = locations['latitude']
-    #long = locations['longitude']
-    #return long + ',' + lat
 
-
-"""def get_nearby_places(coordinates, business_type, next_page):
-    global testing
-    URL = ('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-		+get_users_location()+'&radius=10000'+ '&types='+ business_type
-        +'&key=' + key)
-    print(get_users_location())
-    r = requests.get(URL)
-    response = r.text
-    print(r.status_code)
-    print(r.text)
-    python_object = json.loads(response)
-    error_type= python_object["status"]
-    if(error_type == 'ZERO_RESULTS'):
-        error = '0 Results - No Results'
-        return error
-    if(error_type == 'OK'):
-        error = 'no error ok status'
-        return error
-    if(error_type == 'OVER_QUERY_LIMIT'):
-        error = 'error too much requests'
-        return error
-    results = python_object["results"]
-    testit = python_object["results"]
-    for result in results:
-        if "name" in result:
-            place_name = result["name"]
-        else:
-            place_name = "no name"
-        place_id = result["place_id"]
-        if "icon" in result:
-            place_img = result["icon"]
-        else:
-            place_img = "no image"
-        if "vicinity" in result:
-            place_location = result["vicinity"]
-        else:
-            place_location = "no location"
-        if "types" in result:
-            place_type = result["types"]
-        else:
-            place_type = "no type found"
-        website = get_place_website(place_id)
-        print([business_type, place_name, website])
-        total_results.append([business_type, place_name, website])
-    try:
-        next_page_token = python_object["next_page_token"]
-    except KeyError:
-        return
-    time.sleep(1)
-    testing = [{'name': place_name, 'photo': place_img, 'type': place_type,'location': place_location, 'website': website}]
-    testing = [{'name': 'Mabrouk', 'photo': "picture.png", 'type': 'Food place', 'location': 'Morocco, Sale, Sidi Moussa', 'rating': '3'}]
-    get_nearby_places(cooredinates, business_type, next_page_token)
-"""
 
 def get_place_website(place_id):
     reqURL = ('https://maps.googleapis.com/maps/api/place/details/json?placeid='
@@ -206,9 +141,6 @@ class User(db.Model):
         return '<User %r>' % (self.username)
 
 db.create_all()
-#if not database_exists(engine.url):
-    #create_database(engine.url)
-#print(engine.url)
 
 @app.route('/register' , methods=['GET','POST'])
 def register():
