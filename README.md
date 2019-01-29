@@ -27,11 +27,9 @@ added a way to display results in html
 ### Todo:
 
 ```
-1. [Important] Code Cleaning and Optimizing
-2. Make a list for each returned result of a place.
-3. Add a like/dislike system for the user to be able to add prefered places to his/her Dashboard
-4. Learn Python to do all of the above properly
-
+1. [Important] Code Cleaning and Optimizing.
+2. Add a like/dislike system for the user to be able to add prefered places to his/her Dashboard.
+3. Fix the detecting of the users ip address.
 ```
 
 ## Extensions:
