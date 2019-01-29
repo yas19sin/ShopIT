@@ -17,8 +17,11 @@ Added a login/register system.
 0.1.3
 Added Dashboard for when user logged in
 0.1.4
-added the googlemaps api to get nearby places such as stores/shops
+added an api to get nearby places such as stores/shops
 fixed some bugs/errors in html code and python
+0.1.5
+fixed bugs with code that were causing it to return nothing
+added a way to display results in html
 ```
 
 ### Todo:
@@ -33,7 +36,7 @@ fixed some bugs/errors in html code and python
 
 ## Extensions:
 
-#this will install all the required modules for the app to work properly:
+<a> this will install all the required modules for the app to work properly:</a>
 ```
 pip install -r requirements.txt
 
