@@ -34,13 +34,13 @@
   <ItemGroup>
     <Content Include="requirements.txt" />
     <None Include="ShopIT.pubxml" />
+    <Content Include="shema.sql" />
     <Content Include="static\css\main.css" />
     <Content Include="static\css\styles.css" />
     <Content Include="templates\About.html" />
     <Content Include="templates\Contact.html" />
     <Content Include="templates\Dashboard.html" />
     <Content Include="templates\index.html" />
-    <Content Include="templates\layout.html" />
     <Content Include="templates\Logout.html" />
     <Content Include="templates\password_recovery.html" />
     <Content Include="templates\login.html" />

@@ -1,104 +1,124 @@
 from datetime import datetime
+import requests, json, os, psycopg2
 from flask import Flask, session, request, flash, url_for, redirect, render_template, abort , g
 from flask_login import LoginManager, login_user , logout_user , current_user , login_required
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-import googlemaps, requests, json, time
-from googlemaps.places import places_autocomplete_session_token
 import sqlalchemy, sqlalchemy_utils
-
-key = 'AIzaSyAoMCCon3EqNo4HUCaDsCVegwG4P5sTxkE'
 
 error_type = ''
 error = ''
 
+
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.environ.get('SECRECT_KEY','@unitedremote@2019')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://vsamkirghjtirg:fa8c6e0206676c2706036222a797f73e3468a9ad849912a1107e2435a8abad83@ec2-54-75-230-41.eu-west-1.compute.amazonaws.com:5432/d7ijjntbq52n4g'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['DEBUG'] = True
 wsgi_app = app.wsgi_app
 db = SQLAlchemy(app)
-google_places = googlemaps.Client(key)
-
+db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
 
+api_key = '8725c6e9248c510a9869fc8ecca153a3'
+"""
+def get_location():
+    URL = 'http://api.ipstack.com/'+ request.remote_addr +'?access_key=' + api_key + '&output=json'
+    r = requests.get(URL)
+    position = json.loads(r.text)
+    lat = position['latitude']
+    ilong = position['longitude']
+    loc = str(lat) + ',' + str(ilong)
+    print(loc)
+    return loc
+"""
 
-def get_place_website(place_id):
-    reqURL = ('https://maps.googleapis.com/maps/api/place/details/json?placeid='
-              +place_id+'&key='+key)
-    r = requests.get(reqURL)
-    response = r.text
-    python_object = json.loads(response)
-    try:
-        place_details = python_object["result"]
-        if 'website' in place_details:
-            return place_details['website']
-        else:
-            return "no website listed in API"
-    except:
-        print("err getting place details")
+url = 'https://api.foursquare.com/v2/venues/explore'
+
+"""
+def get_places():
+    resp = requests.get(url=url, params=params)
+    data = resp.json()
+    places = []
+    response = data['response']
+    for group in response['groups']:
+        for item in group['items']:
+            places_holder = {}
+            venue = item['venue']
+            place_id = venue['id']
+            place_name = venue['name']
+            location = venue['location']
+            formatted_address = location['formattedAddress']
+            if str(place_name) not in places:
+                places_holder['name'] = place_name
+            for icons in venue['categories']:
+                photo = icons['icon']
+                prefix = photo['prefix']
+                suffix = photo['suffix']
+                place_photo = prefix + suffix
+                places_holder['photo'] = place_photo
+            places_holder['type'] = 'Shop'
+            places_holder['location'] = formatted_address
+            places_holder['id'] = place_id
+            places.append(places_holder)
+    return places
+"""
 
 @app.route('/Search', methods=['POST', 'GET'])
 @login_required
 def Search():
-    testing = ['']
-    total_results = ['']
-    jreq = ('https://api.ipgeolocation.io/ipgeo?apiKey=dbe5400141564b12ad9e379e679fb327')
-    rq = requests.get(jreq)
-    res = rq.text
-    print(rq.status_code)
-    print(rq.text)
-    locations = json.loads(res)
-    lat = locations['latitude']
-    long = locations['longitude']
-    print(lat)
-    print(long)
-    lat_loc = lat + ',' + long
-    URL = ('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-            +lat + ',' + long+'&radius=2000'+ '&types='+ 'store,stores'+ '&key=' + key)
-    print(lat_loc)
+    ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+    URL = 'http://api.ipstack.com/'+ ip_address +'?access_key=' + api_key + '&output=json'
     r = requests.get(URL)
-    response = r.text
-    print(r.status_code)
-    print(r.text)
-    python_object = json.loads(response)
-    global error, error_type
-    error_type= python_object["status"]
-    if(error_type == 'ZERO_RESULTS'):
-        error = '0 Results - No Results'
-    if(error_type == 'OK'):
-        error = 'no error ok status'
-    if(error_type == 'OVER_QUERY_LIMIT'):
-        error = 'error too much requests'
-    print(error)
-    results = python_object["results"]
-    for result in results:
-        if "name" in result:
-            place_name = result["name"]
-        else:
-            place_name = "no name"
-        place_id = result["place_id"]
-        if "icon" in result:
-            place_img = result["icon"]
-        else:
-            place_img = "no image"
-        if "vicinity" in result:
-            place_location = result["vicinity"]
-        else:
-            place_location = "no location"
-        if "types" in result:
-            place_type = result["types"]
-        else:
-            place_type = "no type found"
-        time.sleep(2)
-        website = get_place_website(place_id)
-        print([place_name, place_img, place_type, place_location, website])
-        total_results.append([place_name, place_img, place_type, place_location, website])
-        testing = [{'name': place_name, 'photo': place_img, 'type': place_type,'location': place_location, 'website': website}]
-        testing = [{'name': 'Mabrouk', 'photo': "picture.png", 'type': 'Food place', 'location': 'Morocco, Sale, Sidi Moussa', 'Website': 'https://unitedremote.com/developers'}]
-        return render_template('Search.html', places = testing, error_is = error, all_places = total_results)
-    testing = [{'name': 'Mabrouk', 'photo': "picture.png", 'type': 'Food place', 'location': 'Morocco, Sale, Sidi Moussa', 'Website': 'https://unitedremote.com/developers'}]
-    return render_template('Search.html', places = testing, error_is = error, all_places = total_results)
+    position = json.loads(r.text)
+    lat = position['latitude']
+    ilong = position['longitude']
+    loc = str(lat) + ',' + str(ilong)
+    print(loc)
+    params = dict(
+        client_id='VQ0LMBJRKFVDNFOSIIGB2K3Y5LJPJAY2BXDGZCYY5VBVL5D1',
+        client_secret='MZ5DBZXGX1X1DS0KVHCA5E5NCU0H0YZCISYFZ35VU0OV1YGI',
+        v='20180323',
+        ll=loc,
+        query='shop',
+        limit=10
+    )
+    def get_places():
+        resp = requests.get(url=url, params=params)
+        data = resp.json()
+        places = []
+        response = data['response']
+        for group in response['groups']:
+            for item in group['items']:
+                places_holder = {}
+                venue = item['venue']
+                place_id = venue['id']
+                place_name = venue['name']
+                location = venue['location']
+                formatted_address = location['formattedAddress']
+                if str(place_name) not in places:
+                    places_holder['name'] = place_name
+                for icons in venue['categories']:
+                    photo = icons['icon']
+                    prefix = photo['prefix']
+                    suffix = photo['suffix']
+                    place_photo = prefix + suffix
+                    places_holder['photo'] = place_photo
+                places_holder['type'] = 'Shop'
+                places_holder['location'] = formatted_address
+                places_holder['id'] = place_id
+                places.append(places_holder)
+        return places
+    return render_template('Search.html', places = get_places())
+
+
+@app.before_request
+def before_request():
+    psycopg2.connect('postgres://vsamkirghjtirg:fa8c6e0206676c2706036222a797f73e3468a9ad849912a1107e2435a8abad83@ec2-54-75-230-41.eu-west-1.compute.amazonaws.com:5432/d7ijjntbq52n4g')
+
 
 @login_manager.user_loader
 def load_user(id):
@@ -140,7 +160,9 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % (self.username)
 
-db.create_all()
+#if not database_exists(engine.url):
+    #create_database(engine.url)
+#print(engine.url)
 
 @app.route('/register' , methods=['GET','POST'])
 def register():
@@ -209,13 +231,3 @@ def Contact():
 @login_required
 def password_recovery():
     return render_template('password_recovery.html')
-
-if __name__ == '__main__':
-    app.secret_key = "unitedremote@2019"
-    import os
-    HOST = os.environ.get('SERVER_HOST', 'localhost')
-    try:
-        PORT = int(os.environ.get('SERVER_PORT', '5555'))
-    except ValueError:
-        PORT = 5555
-    app.run(HOST, PORT, debug=True)
