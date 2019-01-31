@@ -1,10 +1,10 @@
 ### What is ShopIT:
 
-```
-ShopIT is a web app that gives you nearby shops depending on your location
-it was made as web coding challenge for https://unitedremote.com/
-for live test visit: https://shop2it.herokuapp.com/ (note that this is not the latest build)
-```
+<ul>
+  <li>ShopIT is a web app that gives you nearby shops depending on your location</li>
+  <li>it was made as web coding challenge for <a href="https://unitedremote.com/"> unitedremote</a> </li>
+  <li>for live test visit: <a href="https://shop2it.herokuapp.com/"> link</a> (note that this is not the latest version)</li>
+</ul>
 
 ### Change Log:
 
