@@ -35,7 +35,7 @@ Added functionallity to remove/dislike places so they get removed from the Dashb
 ```
 1. Install Python 3.7 from here https://www.python.org/downloads/release/python-370/, if done then open your cmd/terminal and type python --version to make sure its working if its not make sure you restarted your computer.
 2. then go to Extensions down below and run that command while you're in the project folder where app.py is.
-3. Now you're ready to go, while your in the folder where app.py is just put the following command in your terminal/command : python app.py
+3. Now you're ready to go, while your in the folder where app.py is just put the following command in your terminal/command : python app.py 
 4. browse to 127.0.0.1/5000 or see your terminal/command for the url and paste it in your browser.
 5. congrats you have successfully installed and run the web app, Enjoy!!.
 ```
