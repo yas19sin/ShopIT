@@ -1,7 +1,7 @@
 ### What is ShopIT:
 
 ```
-Shop IT is a website that gives you shops/stores depending on your location
+Shop IT is a website that gives you shops depending on your location
 ```
 
 ### Change Log:
@@ -22,14 +22,19 @@ fixed some bugs/errors in html code and python
 0.1.5
 fixed bugs with code that were causing it to return nothing
 added a way to display results in html
+0.1.6
+Added functionallity to like/dislike
+Added Display of liked places into users Dashboards
 ```
 
 ### Todo:
 
 ```
-1. [Important] Code Cleaning and Optimizing.
-2. Add a like/dislike system for the user to be able to add prefered places to his/her Dashboard.
-3. Fix the detecting of the users ip address.
+1. [Important] Code Cleaning and Optimizing
+2. Make a list for each returned result of a place.
+3. Add a like/dislike system for the user to be able to add prefered places to his/her Dashboard
+4. Learn Python to do all of the above properly
+
 ```
 
 ## Extensions:
