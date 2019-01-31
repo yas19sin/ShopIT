@@ -131,8 +131,8 @@ class Places(db.Model):
     __tablename__ = "Places"
     ids = db.Column('id', db.String, unique=True, primary_key=True)
     name = db.Column('name', db.String, unique=True, index=True)
-    location = db.Column('location', db.String, index=True)
-    photo = db.Column('photo', db.String, unique=True, index=True)
+    location = db.Column('location', db.String)
+    photo = db.Column('photo', db.String)
     types = db.Column('type', db.String)
 
     def __init__(self, ids, name, location, photo, types):
@@ -157,7 +157,7 @@ def register():
         flash('Email or Password already registered', 'error')
         return redirect(url_for('login'))
 
-    user = User(request.form['username'], password, email)
+    user = User('bla', password, email)
     db.session.add(user)
     db.session.commit()
     flash('User successfully registered')
@@ -284,14 +284,6 @@ def Dislike():
 
     flash('Successfully Deleted from Dashboard')
     return render_template('Dashboard.html')
-
-
-@app.route('/deleteAll')
-@login_required
-def deleteAll():
-    Places.query.delete()
-    db.session.commit()
-    return render_template('/Dashboard.html')
 
 
 if __name__ == '__main__':
