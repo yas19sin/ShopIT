@@ -1,7 +1,9 @@
 ### What is ShopIT:
 
 ```
-Shop IT is a website that gives you shops depending on your location
+Shop IT is a web app that gives you nearby shops depending on your location
+it was made as web coding challenge for https://unitedremote.com/
+for live test visit: https://shop2it.herokuapp.com/ (note that this is not the latest build)
 ```
 
 ### Change Log:
@@ -47,12 +49,15 @@ pip install -r requirements.txt
 
 ```
 
-### Author:
-
-
-[yas19sin](https://www.instagram.com/yas19sin/) - Contact
-
 ### Used Technolegies:
 
 [FourSquare] (https://foursquare.com/) - is Used to retrieve nearby places of users and get details.
 [ipstack] (https://ipstack.com/) - is Used to get information about users ip address and location.
+
+### Author:
+
+[yas19sin](https://www.instagram.com/yas19sin/) - Contact
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
