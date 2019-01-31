@@ -12,6 +12,21 @@ section[class="search-section"]{
     height: auto
     !important;
 }
+div[class="container-signup"] {
+    margin-top: 150px;
+    margin-left: 80px;
+    margin-right: 80px;
+    color:rgba(255,255,255,.5) !important;
+}
+section[class="dashboard-section"]{
+    margin-top: 200px;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    width: 500 px;
+    height: auto
+    !important;
+}
 table, th, td {
     border-collapse: collapse;
 }
@@ -39,7 +54,7 @@ button#sign-btn {
     background-color: lightgray;
 }
 div[class="container-sign"] {
-    margin-top: 90px;
+    margin-top: 150px;
     margin-left: 80px;
     margin-right: 80px;
     color:rgba(255,255,255,.5) !important;
