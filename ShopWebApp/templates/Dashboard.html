@@ -85,13 +85,12 @@
     <section id="dashboard" class="dashboard-section">
         <form method="POST" action="{{url_for('Search')}}">
             <div>
-                <a href="/deleteAll">Delete all saved places</a>
                 {% if Place %}
                 <div class="tg-wrap">
                     {% for place in Place %}
                     <table id="tg-3099d" class="tg" align="center">
                         <tr bgcolor="#606060">
-                            <th class="tg-s268">Place Name: {{place.name}}</th>
+                            <th class="tg-0lax">Place Name: {{place.name}}</th>
                         </tr>
                         <tr bgcolor="#606060">
                             <td class="tg-0lax"><img src="{{place.photo}}" /></td>
@@ -107,10 +106,8 @@
                         </tr>
                     </table>
                     {% endfor %}
-                {% else %}
-                    <a style="color:white"> no places saved</a>
-                </div>
                 {% endif %}
+                </div>
             </div>
         </form>
     </section>
