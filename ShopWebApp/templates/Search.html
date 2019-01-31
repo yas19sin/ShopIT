@@ -77,7 +77,9 @@
                 {% if not g.user.is_authenticated %}
                 <a href="/register" class="btn btn-primary js-scroll-trigger">Get Started</a>
                 {% else %}
-                <a href="/Search" class="btn btn-primary js-scroll-trigger">Get Started</a>
+                <form method="POST">
+                <button href="/Search" class="btn btn-primary js-scroll-trigger">Get Started</button>
+                </form>
                 {% endif %}
             </div>
         </div>
@@ -103,7 +105,7 @@
                             <td class="tg-0lax">Location: {{place.location}}</td>
                         </tr>
                         <tr bgcolor="#606060">
-                            <td class="tg-0lax" style="text-align: center"><a id="{{place.id}}" href="/like"><i class="fas fa-thumbs-up"> </i></a> | <a id="{{place.id}}" href="/dislike"><i class="fas fa-thumbs-down"></i></a></td>
+                            <td class="tg-0lax" style="text-align: center"><a href="/like?id={{place.id}}&name={{place.name}}&location={{place.location}}&photo={{place.photo}}&type={{place.type}}">Like <i class="fas fa-thumbs-up"> </i></a> | <a href="/dislike?id={{place.id}}&name={{place.name}}&location={{place.location}}&photo={{place.photo}}&type={{place.type}}">Dislike</a></td>
                         </tr>
                     </table>
                     {% endfor %}
