@@ -47,6 +47,11 @@ pip install -r requirements.txt
 
 ```
 
+### Author:
+
+
+[yas19sin](https://www.instagram.com/yas19sin/) - Contact
+
 ### Used Technolegies:
 
 [FourSquare] (https://foursquare.com/) - is Used to retrieve nearby places of users and get details.
