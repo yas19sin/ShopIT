@@ -3,7 +3,7 @@
 <ul>
   <li>ShopIT is a web app that gives you nearby shops depending on your location</li>
   <li>it was made as web coding challenge for <a href="https://unitedremote.com/"> unitedremote</a> </li>
-  <li>for live test visit: <a href="https://shop2it.herokuapp.com/"> link</a> </li>
+  <li>for live test visit: <a targer="_blank" href="https://shop2it.herokuapp.com/"> link</a> </li>
 </ul>
 
 ### Change Log:
